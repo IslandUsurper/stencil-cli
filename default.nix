@@ -10,7 +10,7 @@ let
   };
 in
 (stencil.package.override {
-  buildInputs = [ libsass pkgs.nodePackages.node-gyp pkgs.pkgconfig ];
+  buildInputs = [ libsass pkgs.pkgconfig ] ++ pkgs.stdenv.lib.optionals pkgs.stdenv.isDarwin [ pkgs.nodePackages.node-gyp pkgs.xcbuild ];
 }).overrideAttrs (old: {
   LIBSASS_EXT = "auto";
 })
