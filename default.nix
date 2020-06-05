@@ -10,7 +10,8 @@ let
   };
 in
 (stencil.package.override {
-  buildInputs = [ libsass pkgs.pkgconfig ] ++ pkgs.stdenv.lib.optionals pkgs.stdenv.isDarwin [ pkgs.nodePackages.node-gyp pkgs.darwin.apple_sdk.frameworks.CoreServices ];
+  buildInputs = [ libsass pkgs.pkgconfig ];
+  nativeBuildInputs = pkgs.stdenv.lib.optionals pkgs.stdenv.isDarwin [ pkgs.xcodebuild ];
 }).overrideAttrs (old: {
   LIBSASS_EXT = "auto";
 })
